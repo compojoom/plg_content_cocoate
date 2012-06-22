@@ -8,7 +8,7 @@
 	<authorEmail>daniel@compojoom.com</authorEmail>
 	<authorUrl>https://compojoom.com</authorUrl>
 	<version>@@VERSION@@</version>
-	<description>PLG_SYSTEM_COCOATE_DESC</description>
+	<description>PLG_CONTENT_COCOATE_DESC</description>
 	<files>
         ##PACKAGEFILESPLUGIN##
 	</files>
