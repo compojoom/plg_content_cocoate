@@ -57,11 +57,11 @@ class plgContentCocoate extends JPlugin
                         $content[] = '<h2>'.JText::_('PLG_CONTENT_COCOATE_BOOK').': '.$chapter->node->Book->__toString().'</h2>';
                         $content[] = '<h3>'.JText::_('PLG_CONTENT_COCOATE_CHAPTER').': '.$chapter->node->Chapter->__toString().'</h3>';
                         $content[] = $chapter->node->Content->__toString();
-                        if($chapter->node->Attribution) {
-                            $content[] = '<p>'.JText::_('PLG_CONTENT_COCOATE_AUTHOR').': '.$chapter->node->Attribution.'</p>';
+                        if($chapter->node->Attribution->__toString()) {
+                            $content[] = '<p>'.JText::_('PLG_CONTENT_COCOATE_AUTHOR').': '.$chapter->node->Attribution->__toString().'</p>';
                         }
-                        $content[] = $chapter->node->Sponsors;
-                        $content[] = $chapter->node->License;
+                        $content[] = '<p>'.JText::_('PLG_CONTENT_COCOATE_SPONSORED_BY').':</p>' . $chapter->node->Sponsors->__toString();
+                        $content[] = $chapter->node->License->__toString();
                         if($chapter->node->AttributionURL->__toString()) {
                             $url = $chapter->node->AttributionURL->__toString();
                         } else {
