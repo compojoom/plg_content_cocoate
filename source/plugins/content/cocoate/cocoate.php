@@ -54,10 +54,20 @@ class plgContentCocoate extends JPlugin
                     $chapter = simplexml_load_file('http://cocoate.com/chapter/'.$match[1]);
 
                     if($chapter) {
+                        $content[] = '<h2>'.JText::_('PLG_CONTENT_COCOATE_BOOK').$chapter->node->Book->__toString().'</h2>';
+                        $content[] = '<h3>'.JText::_('PLG_CONTENT_COCOATE_CHAPTER').$chapter->node->Chapter->__toString().'</h3>';
                         $content[] = $chapter->node->Content->__toString();
+                        if($chapter->node->Attribution) {
+                            $content[] = '<p>'.JText::_('PLG_CONTENT_COCOATE_AUTHOR').':'.$chapter->node->Attribution.'</p>';
+                        }
                         $content[] = $chapter->node->Sponsors;
                         $content[] = $chapter->node->License;
-                        $content[] = '<div class="source"><a href="http://cocoate.com/node/'.$match[1].'">'.JText::_('PLG_CONTENT_COCOATE_READ_CHAPTER_ON').'</div>';
+                        if($chapter->node->AttributionURL->__toString()) {
+                            $url = $chapter->node->AttributionURL->__toString();
+                        } else {
+                            $url = 'http://cocoate.com/node/'.$match[1];
+                        }
+                        $content[] = '<div class="source"><a href="'.$url.'">'.JText::_('PLG_CONTENT_COCOATE_READ_CHAPTER_ON').'</div>';
                         $cache->store(implode('', $content), $match[1], 'plg_cocoate');
                     } else {
                         $content[] = '<div class="error">'.JText::_('PLG_CONTENT_COCOATE_COULD_NOT_FETCH_CONTENT').'</div>';
