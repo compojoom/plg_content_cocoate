@@ -54,11 +54,11 @@ class plgContentCocoate extends JPlugin
                     $chapter = simplexml_load_file('http://cocoate.com/chapter/'.$match[1]);
 
                     if($chapter) {
-                        $content[] = '<h2>'.JText::_('PLG_CONTENT_COCOATE_BOOK').$chapter->node->Book->__toString().'</h2>';
-                        $content[] = '<h3>'.JText::_('PLG_CONTENT_COCOATE_CHAPTER').$chapter->node->Chapter->__toString().'</h3>';
+                        $content[] = '<h2>'.JText::_('PLG_CONTENT_COCOATE_BOOK').': '.$chapter->node->Book->__toString().'</h2>';
+                        $content[] = '<h3>'.JText::_('PLG_CONTENT_COCOATE_CHAPTER').': '.$chapter->node->Chapter->__toString().'</h3>';
                         $content[] = $chapter->node->Content->__toString();
                         if($chapter->node->Attribution) {
-                            $content[] = '<p>'.JText::_('PLG_CONTENT_COCOATE_AUTHOR').':'.$chapter->node->Attribution.'</p>';
+                            $content[] = '<p>'.JText::_('PLG_CONTENT_COCOATE_AUTHOR').': '.$chapter->node->Attribution.'</p>';
                         }
                         $content[] = $chapter->node->Sponsors;
                         $content[] = $chapter->node->License;
@@ -67,10 +67,10 @@ class plgContentCocoate extends JPlugin
                         } else {
                             $url = 'http://cocoate.com/node/'.$match[1];
                         }
-                        $content[] = '<div class="source"><a href="'.$url.'">'.JText::_('PLG_CONTENT_COCOATE_READ_CHAPTER_ON').'</a></div>';
+                        $content[] = '<p class="source"><a href="'.$url.'">'.JText::_('PLG_CONTENT_COCOATE_READ_CHAPTER_ON').'</a></p>';
                         $cache->store(implode('', $content), $match[1]);
                     } else {
-                        $content[] = '<div class="error">'.JText::_('PLG_CONTENT_COCOATE_COULD_NOT_FETCH_CONTENT').'</div>';
+                        $content[] = '<p class="error">'.JText::_('PLG_CONTENT_COCOATE_COULD_NOT_FETCH_CONTENT').'</p>';
                     }
                  }
                 // replace match
