@@ -48,7 +48,7 @@ class plgContentCocoate extends JPlugin
         // No matches, skip this
         if ($matches) {
             foreach ($matches as $match) {
-                $content[] = $cache->get($match[1], 'plg_cocoate');
+                $content[] = $cache->get($match[1]);
 
                 if(!$content[0]) {
                     $chapter = simplexml_load_file('http://cocoate.com/chapter/'.$match[1]);
@@ -67,8 +67,8 @@ class plgContentCocoate extends JPlugin
                         } else {
                             $url = 'http://cocoate.com/node/'.$match[1];
                         }
-                        $content[] = '<div class="source"><a href="'.$url.'">'.JText::_('PLG_CONTENT_COCOATE_READ_CHAPTER_ON').'</div>';
-                        $cache->store(implode('', $content), $match[1], 'plg_cocoate');
+                        $content[] = '<div class="source"><a href="'.$url.'">'.JText::_('PLG_CONTENT_COCOATE_READ_CHAPTER_ON').'</a></div>';
+                        $cache->store(implode('', $content), $match[1]);
                     } else {
                         $content[] = '<div class="error">'.JText::_('PLG_CONTENT_COCOATE_COULD_NOT_FETCH_CONTENT').'</div>';
                     }
