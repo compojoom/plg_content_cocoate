@@ -53,11 +53,15 @@ class plgContentCocoate extends JPlugin
                 if(!$content[0]) {
                     $chapter = simplexml_load_file('http://cocoate.com/chapter/'.$match[1]);
 
-                    $content[] = $chapter->node->Content->__toString();
-                    $content[] = $chapter->node->Sponsors;
-                    $content[] = '<div class="source"><a href="http://cocoate.com/node/'.$match[1].'">'.JText::_('PLG_COCOATE_READ_CHAPTER_ON').'</div>';
-                    $cache->store(implode('', $content), $match[1], 'plg_cocoate');
-                }
+                    if($chapter) {
+                        $content[] = $chapter->node->Content->__toString();
+                        $content[] = $chapter->node->Sponsors;
+                        $content[] = '<div class="source"><a href="http://cocoate.com/node/'.$match[1].'">'.JText::_('PLG_CONTENT_COCOATE_READ_CHAPTER_ON').'</div>';
+                        $cache->store(implode('', $content), $match[1], 'plg_cocoate');
+                    } else {
+                        $content[] = '<div class="error">'.JText::_('PLG_CONTENT_COCOATE_COULD_NOT_FETCH_CONTENT').'</div>';
+                    }
+                 }
                 // replace match
                 $article->text = preg_replace("|$match[0]|", addcslashes(implode('',$content), '\\$'), $article->text, 1);
             }
