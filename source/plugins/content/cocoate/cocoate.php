@@ -13,13 +13,6 @@ jimport('joomla.plugin.plugin');
 class plgContentCocoate extends JPlugin
 {
 
-	public function __construct(&$subject, $config)
-	{
-		parent::__construct($subject, $config);
-
-
-	}
-
     /**
      * Plugin that loads module positions within content
      *
@@ -65,7 +58,7 @@ class plgContentCocoate extends JPlugin
                     $content[] = '<div class="source"><a href="http://cocoate.com/node/'.$match[1].'">'.JText::_('PLG_COCOATE_READ_CHAPTER_ON').'</div>';
                     $cache->store(implode('', $content), $match[1], 'plg_cocoate');
                 }
-//                // We should replace only first occurrence in order to allow positions with the same name to regenerate their content:
+                // replace match
                 $article->text = preg_replace("|$match[0]|", addcslashes(implode('',$content), '\\$'), $article->text, 1);
             }
         }
