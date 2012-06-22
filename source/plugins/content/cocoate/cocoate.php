@@ -56,6 +56,7 @@ class plgContentCocoate extends JPlugin
                     if($chapter) {
                         $content[] = $chapter->node->Content->__toString();
                         $content[] = $chapter->node->Sponsors;
+                        $content[] = $chapter->node->License;
                         $content[] = '<div class="source"><a href="http://cocoate.com/node/'.$match[1].'">'.JText::_('PLG_CONTENT_COCOATE_READ_CHAPTER_ON').'</div>';
                         $cache->store(implode('', $content), $match[1], 'plg_cocoate');
                     } else {
