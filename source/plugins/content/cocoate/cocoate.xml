@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<extension version="2.5" type="plugin" group="content">
+<install version="1.5" type="plugin" group="content" method="upgrade">
 	<name>@@PLUGINNAME@@</name>
 	<author>Daniel Dimitrov</author>
 	<creationDate>@@DATE@@</creationDate>
@@ -21,4 +21,4 @@
 
         </fields>
     </config>
-</extension>
+</install>

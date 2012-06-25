@@ -13,6 +13,11 @@ jimport('joomla.plugin.plugin');
 class plgContentCocoate extends JPlugin
 {
 
+    public function onPrepareContent( &$article, &$params, $limitstart )
+    {
+        $this->output($article);
+    }
+
     /**
      * Plugin that loads module positions within content
      *
@@ -23,6 +28,12 @@ class plgContentCocoate extends JPlugin
      * @return bool
      */
     public function onContentPrepare($context, &$article, &$params, $page = 0)
+    {
+       $this->outpu($article);
+
+    }
+
+    public function output($article)
     {
         // simple performance check to determine whether bot should process further
         if (strpos($article->text, 'cocoate') === false && strpos($article->text, 'cocoate') === false) {
@@ -72,7 +83,7 @@ class plgContentCocoate extends JPlugin
                     } else {
                         $content[] = '<p class="error">'.JText::_('PLG_CONTENT_COCOATE_COULD_NOT_FETCH_CONTENT').'</p>';
                     }
-                 }
+                }
                 // replace match
                 $article->text = preg_replace("|$match[0]|", addcslashes(implode('',$content), '\\$'), $article->text, 1);
             }
