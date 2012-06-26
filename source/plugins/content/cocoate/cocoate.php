@@ -29,8 +29,7 @@ class plgContentCocoate extends JPlugin
      */
     public function onContentPrepare($context, &$article, &$params, $page = 0)
     {
-       $this->outpu($article);
-
+       $this->output($article);
     }
 
     public function output($article)
